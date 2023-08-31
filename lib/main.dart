@@ -1,3 +1,4 @@
+import 'package:angela_course_prac_repo/Magic8%20ball%20app/magicBall.dart';
 import 'package:angela_course_prac_repo/diceApp.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +46,10 @@ class HomePage extends StatelessWidget {
             }, child: const Text('add Fonts & Img')),
             ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>const DiceApp()));
-            }, child: const Text('Dice App'))
+            }, child: const Text('Dice App')),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>const MagicBallPage()));
+            }, child: const Text('MagicBall App'))
           ],
         ),
       ),
