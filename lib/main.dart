@@ -1,5 +1,6 @@
 import 'package:angela_course_prac_repo/Magic8%20ball%20app/magicBall.dart';
 import 'package:angela_course_prac_repo/diceApp.dart';
+import 'package:angela_course_prac_repo/xylophone%20app/xylophone.dart';
 import 'package:flutter/material.dart';
 
 import 'addImgFont.dart';
@@ -49,7 +50,10 @@ class HomePage extends StatelessWidget {
             }, child: const Text('Dice App')),
             ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>const MagicBallPage()));
-            }, child: const Text('MagicBall App'))
+            }, child: const Text('MagicBall App')),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>const XylophoneApp()));
+            }, child: const Text('Xylophone App'))
           ],
         ),
       ),
