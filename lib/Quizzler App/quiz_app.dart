@@ -1,3 +1,4 @@
+import 'package:angela_course_prac_repo/Quizzler%20App/questions.dart';
 import 'package:flutter/material.dart';
 
 class QuizApp extends StatefulWidget {
@@ -9,15 +10,26 @@ class QuizApp extends StatefulWidget {
 
 class _QuizAppState extends State<QuizApp> {
  List<Icon> scoreKepper = [];
- List<String> questions=[
-   'You can lead a cow down stairs but not up stairs',
-   'Approximatly one quarter of human bones are in feet',
-   'A slung\'s blood is green',
-   'You can lead a cow down stairs but not up stairs',
-   'Approximatly one quarter of human bones are in feet',
-   'A slung\'s blood is green',
+ // List<String> questions=[
+ //   'You can lead a cow down stairs but not up stairs',
+ //   'Approximatly one quarter of human bones are in feet',
+ //   'A slung\'s blood is green',
+ //   'You can lead a cow down stairs but not up stairs',
+ //   'Approximatly one quarter of human bones are in feet',
+ //   'A slung\'s blood is green',
+ // ];
+ // List<bool> answers = [false, true, true,false, true, true];
+
+
+
+//now by using class we can togather questions and answers at one place;
+ List<Questions> questionBank = [
+   Questions(q: 'You can lead a cow down stairs but not up stairs', a: false),
+   Questions(q: 'Approximatly one quarter of human bones are in feet awaya adasd asdaddasd', a: true),
+   Questions(q: 'A slung\'s blood is green', a: true)
  ];
- List<bool> answers = [false, true, true,false, true, true];
+
+
  int questionNumber = 0;
   @override
   Widget build(BuildContext context) {
@@ -33,7 +45,7 @@ class _QuizAppState extends State<QuizApp> {
                   child: Padding(
                     padding: EdgeInsets.all(10.0),
                     child: Center(
-                      child: Text(questions[questionNumber],style: TextStyle(
+                      child: Text(questionBank[questionNumber].questionText,style: TextStyle(
                         color: Colors.white,
                       ),
                         textAlign: TextAlign.center,
@@ -44,14 +56,14 @@ class _QuizAppState extends State<QuizApp> {
             Expanded(child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: CustomButton(btn: 'True', onTap: (){
-                 bool correctAnswer = answers[questionNumber];
+                 bool correctAnswer = questionBank[questionNumber].answer;
                  if(correctAnswer==true){
                    print('Your answer is right');
                  }else{
                    print('wrong answer');
                  }
                   setState(() {
-                    if(questionNumber<5){
+                    if(questionNumber<2){
                       questionNumber++;
                     }else{
                       questionNumber=0;
@@ -63,14 +75,14 @@ class _QuizAppState extends State<QuizApp> {
             Expanded(child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: CustomButton(btn: 'False', onTap: (){
-                bool correctAnswer = answers[questionNumber];
+                bool correctAnswer = questionBank[questionNumber].answer;
                 if(correctAnswer==false){
                   print('your are correct');
                 }else{
                   print('you are wrong');
                 }
                 setState(() {
-                  if(questionNumber<5){
+                  if(questionNumber<2){
                     questionNumber++;
                   }else{
                     questionNumber=0;
