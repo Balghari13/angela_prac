@@ -57,7 +57,8 @@ class HomePage extends StatelessWidget {
             }, child: const Text('Xylophone App')),
             ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuizApp()));
-            }, child: const Text('Quiz App'))
+            }, child: const Text('Quiz App')),
+
           ],
         ),
       ),
