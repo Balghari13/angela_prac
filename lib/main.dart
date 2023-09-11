@@ -1,5 +1,7 @@
+import 'package:angela_course_prac_repo/Distini%20Challange/distini_app.dart';
 import 'package:angela_course_prac_repo/Magic8%20ball%20app/magicBall.dart';
 import 'package:angela_course_prac_repo/DiceApp/diceApp.dart';
+import 'package:angela_course_prac_repo/pract.dart';
 import 'package:angela_course_prac_repo/xylophone%20app/xylophone.dart';
 import 'package:flutter/material.dart';
 
@@ -18,9 +20,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+     theme: ThemeData.dark().copyWith(
+       appBarTheme: AppBarTheme(color: Color(0xff0a0e21)),
+       scaffoldBackgroundColor: Color(0xff0a0e21),
+     ),
      home: const HomePage(),
     );
   }
@@ -58,7 +61,12 @@ class HomePage extends StatelessWidget {
             ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuizApp()));
             }, child: const Text('Quiz App')),
-
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>const DistiniApp()));
+            }, child: const Text('Distini App')),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> PractApp()));
+            }, child: const Text('Prac App')),
           ],
         ),
       ),
