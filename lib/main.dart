@@ -1,3 +1,4 @@
+import 'package:angela_course_prac_repo/BMI/bmi_app.dart';
 import 'package:angela_course_prac_repo/Distini%20Challange/distini_app.dart';
 import 'package:angela_course_prac_repo/Magic8%20ball%20app/magicBall.dart';
 import 'package:angela_course_prac_repo/DiceApp/diceApp.dart';
@@ -67,6 +68,9 @@ class HomePage extends StatelessWidget {
             ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=> PractApp()));
             }, child: const Text('Prac App')),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> BmiApp()));
+            }, child: const Text('BMI App')),
           ],
         ),
       ),
