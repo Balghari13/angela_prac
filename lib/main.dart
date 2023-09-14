@@ -1,4 +1,5 @@
 import 'package:angela_course_prac_repo/BMI/bmi_app.dart';
+import 'package:angela_course_prac_repo/BMI/result.dart';
 import 'package:angela_course_prac_repo/Distini%20Challange/distini_app.dart';
 import 'package:angela_course_prac_repo/Magic8%20ball%20app/magicBall.dart';
 import 'package:angela_course_prac_repo/DiceApp/diceApp.dart';
@@ -22,10 +23,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
      theme: ThemeData.dark().copyWith(
-       appBarTheme: AppBarTheme(color: Color(0xff0a0e21)),
-       scaffoldBackgroundColor: Color(0xff0a0e21),
+       appBarTheme: const AppBarTheme(color: Color(0xff0a0e21)),
+       scaffoldBackgroundColor: const Color(0xff0a0e21),
      ),
-     home: const HomePage(),
+     //home: const HomePage(),
+       initialRoute: '/',
+      routes: {
+        '/': (context)=> const HomePage(),
+        'addFont': (context)=> const AddImgFonts(),
+        'diceApp': (context)=> const DiceApp(),
+        'magicBall': (context)=> const MagicBallPage(),
+        'xylophone': (context)=> const XylophoneApp(),
+        'quizApp': (context)=> const QuizApp(),
+        'qistiniApp': (context)=> const DistiniApp(),
+        'pracApp' : (context)=> PractApp(),
+        'bmiApp' : (context)=> const BmiApp(),
+      },
     );
   }
 }
@@ -48,28 +61,28 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>const AddImgFonts()));
+             Navigator.pushNamed(context, 'addFont');
             }, child: const Text('add Fonts & Img')),
             ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>const DiceApp()));
+              Navigator.pushNamed(context, 'diceApp');
             }, child: const Text('Dice App')),
             ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>const MagicBallPage()));
-            }, child: const Text('MagicBall App')),
+            Navigator.pushNamed(context, 'magicBall');
+              }, child: const Text('MagicBall App')),
             ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>const XylophoneApp()));
-            }, child: const Text('Xylophone App')),
+              Navigator.pushNamed(context, 'xylophone');
+               }, child: const Text('Xylophone App')),
             ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuizApp()));
+              Navigator.pushNamed(context, 'quizApp');
             }, child: const Text('Quiz App')),
             ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>const DistiniApp()));
+              Navigator.pushNamed(context, 'qistiniApp');
             }, child: const Text('Distini App')),
             ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> PractApp()));
+              Navigator.pushNamed(context, 'pracApp');
             }, child: const Text('Prac App')),
             ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> BmiApp()));
+             Navigator.pushNamed(context, 'bmiApp');
             }, child: const Text('BMI App')),
           ],
         ),
