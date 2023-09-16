@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:angela_course_prac_repo/Weather%20App/screens/location.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:http/http.dart' as http;
 
-
+const apiKey = "30a812ec66c4bd3b3b7ea677cf93d81f";
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -13,6 +16,9 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
 
+  double? latitude;
+  double? longtitude;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -21,8 +27,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void getLoc () async{
     GetLocation location = GetLocation();
     await location.getLocation();
-    print(location.log);
-    print(location.lat);
+    longtitude= location.log;
+    latitude= location.lat;
+    getData();
   }
 //   Future<Position> getLocation() async{
 //     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -53,6 +60,21 @@ class _LoadingScreenState extends State<LoadingScreen> {
   //   }
   //
   // }
+  void getData() async{
+    http.Response response=  await http.get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longtitude&appid=$apiKey'));
+    if(response.statusCode==200){
+      var body = response.body;
+      var condition = jsonDecode(body)['weather'][0]['id'];
+      var city = jsonDecode(body)['name'];
+      var temperatue = jsonDecode(body)['main']['temp'];
+      print('city: $city');
+      print('temperatue: $temperatue');
+      print('condition: $condition');
+
+    }else{
+      print('error ${response.statusCode}');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

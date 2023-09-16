@@ -22,7 +22,7 @@ Future<void> getLocation() async {
       Position position = await Geolocator.getCurrentPosition();
       lat = position.latitude;
       log = position.longitude;
-      print(position);
+      print('position $position');
       //return position;
     }catch(e){
       print(e);
