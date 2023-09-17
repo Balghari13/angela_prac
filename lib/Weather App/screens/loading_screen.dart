@@ -1,11 +1,15 @@
-import 'dart:convert';
+//import 'dart:convert';
 
-import 'package:angela_course_prac_repo/Weather%20App/screens/location.dart';
+// import 'package:angela_course_prac_repo/Weather%20App/screens/city_screen.dart';
+// import 'package:angela_course_prac_repo/Weather%20App/services/location.dart';
+import 'package:angela_course_prac_repo/Weather%20App/screens/location_screen.dart';
+import 'package:angela_course_prac_repo/Weather%20App/services/weather.dart';
+//import 'package:angela_course_prac_repo/Weather%20App/services/networking.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+//import 'package:http/http.dart' as http;
 
-const apiKey = "30a812ec66c4bd3b3b7ea677cf93d81f";
+
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -16,20 +20,29 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
 
-  double? latitude;
-  double? longtitude;
+  // double? latitude;
+  // double? longtitude;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    getLocData();
   }
-  void getLoc () async{
-    GetLocation location = GetLocation();
-    await location.getLocation();
-    longtitude= location.log;
-    latitude= location.lat;
-    getData();
+  void getLocData () async{
+
+    // GetLocation location = GetLocation();
+    // await location.getLocation();
+    // longtitude= location.log;
+    // latitude= location.lat;
+
+    // NetworkHelper networkHelper =
+    // NetworkHelper(url: 'https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.log}&appid=$apiKey&units=metric');
+    // var weatherData = await networkHelper.getData();
+    var weatherData = await WeatherModel().getLocationWeather();
+
+    Navigator.push(context, MaterialPageRoute(builder:
+        (context)=>LocationScreen(locationWeather: weatherData,)));
   }
 //   Future<Position> getLocation() async{
 //     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -60,28 +73,31 @@ class _LoadingScreenState extends State<LoadingScreen> {
   //   }
   //
   // }
-  void getData() async{
-    http.Response response=  await http.get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longtitude&appid=$apiKey'));
-    if(response.statusCode==200){
-      var body = response.body;
-      var condition = jsonDecode(body)['weather'][0]['id'];
-      var city = jsonDecode(body)['name'];
-      var temperatue = jsonDecode(body)['main']['temp'];
-      print('city: $city');
-      print('temperatue: $temperatue');
-      print('condition: $condition');
 
-    }else{
-      print('error ${response.statusCode}');
-    }
-  }
+  //removed in separete class
+  // void getData() async{
+  //   http.Response response=  await http.get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longtitude&appid=$apiKey'));
+  //   if(response.statusCode==200){
+  //     var body = response.body;
+  //     var condition = jsonDecode(body)['weather'][0]['id'];
+  //     var city = jsonDecode(body)['name'];
+  //     var temperatue = jsonDecode(body)['main']['temp'];
+  //     print('city: $city');
+  //     print('temperatue: $temperatue');
+  //     print('condition: $condition');
+  //
+  //   }else{
+  //     print('error ${response.statusCode}');
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(onPressed: (){
-         getLoc();
-        },child: Text('Get Location...'),),
+child: SpinKitDoubleBounce(
+  color: Colors.white,
+  size: 80,
+) ,
       )
     );
   }
