@@ -1,17 +1,23 @@
 import 'package:angela_course_prac_repo/BMI/bmi_app.dart';
-import 'package:angela_course_prac_repo/BMI/result.dart';
 import 'package:angela_course_prac_repo/Distini%20Challange/distini_app.dart';
+import 'package:angela_course_prac_repo/Firebase%20Chat/Screens/chat_screen.dart';
+import 'package:angela_course_prac_repo/Firebase%20Chat/Screens/login_screen.dart';
+import 'package:angela_course_prac_repo/Firebase%20Chat/Screens/registration_screen.dart';
+import 'package:angela_course_prac_repo/Firebase%20Chat/Screens/welcome_screen.dart';
 import 'package:angela_course_prac_repo/Magic8%20ball%20app/magicBall.dart';
 import 'package:angela_course_prac_repo/DiceApp/diceApp.dart';
 import 'package:angela_course_prac_repo/Weather%20App/screens/loading_screen.dart';
 import 'package:angela_course_prac_repo/pract.dart';
 import 'package:angela_course_prac_repo/xylophone%20app/xylophone.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'Quizzler App/quiz_app.dart';
 import 'addImgFont.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -40,6 +46,10 @@ class MyApp extends StatelessWidget {
         'pracApp' : (context)=> PractApp(),
         'bmiApp' : (context)=> const BmiApp(),
         'weatherApp': (context)=> LoadingScreen(),
+        WelcomeScreen.id: (context)=>WelcomeScreen(),
+        LoginScreen.id: (context)=>LoginScreen(),
+        RegistrationScreen.id: (context)=> RegistrationScreen(),
+        ChatScreen.id : (context)=> ChatScreen(),
       },
     );
   }
@@ -88,6 +98,8 @@ class HomePage extends StatelessWidget {
             }, child: const Text('BMI App')),
             ElevatedButton(onPressed: (){Navigator.pushNamed(context, 'weatherApp');},
                 child: Text('Weather App')),
+            ElevatedButton(onPressed: (){Navigator.pushNamed(context, WelcomeScreen.id);},
+                child: Text('Chat App')),
 
           ],
         ),

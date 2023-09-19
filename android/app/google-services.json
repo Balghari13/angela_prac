@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "268749895421",
+    "project_id": "angela-course-prac",
+    "storage_bucket": "angela-course-prac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268749895421:android:2442d042abac7d27377094",
+        "android_client_info": {
+          "package_name": "com.example.angela_course_prac_repo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt6I5UItk7G4dZzXZTcYK-gPJUSz6kTJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
