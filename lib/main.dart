@@ -8,6 +8,7 @@ import 'package:angela_course_prac_repo/Magic8%20ball%20app/magicBall.dart';
 import 'package:angela_course_prac_repo/DiceApp/diceApp.dart';
 import 'package:angela_course_prac_repo/Weather%20App/screens/loading_screen.dart';
 import 'package:angela_course_prac_repo/pract.dart';
+import 'package:angela_course_prac_repo/provider%20todo/screen/task_screen.dart';
 import 'package:angela_course_prac_repo/xylophone%20app/xylophone.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context)=>LoginScreen(),
         RegistrationScreen.id: (context)=> RegistrationScreen(),
         ChatScreen.id : (context)=> ChatScreen(),
+        TaskScreen.id: (context)=> TaskScreen(),
       },
     );
   }
@@ -100,6 +102,8 @@ class HomePage extends StatelessWidget {
                 child: Text('Weather App')),
             ElevatedButton(onPressed: (){Navigator.pushNamed(context, WelcomeScreen.id);},
                 child: Text('Chat App')),
+            ElevatedButton(onPressed: (){Navigator.pushNamed(context, TaskScreen.id);},
+                child: Text('Toda App')),
 
           ],
         ),
